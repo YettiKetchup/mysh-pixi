@@ -1,6 +1,11 @@
-import { PixiEntity } from '../core/entities';
-import { isFunction, isBuilder, isComponentConstructor } from './helpers';
-export class ViewBuilder {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ViewBuilder = void 0;
+const pixijs_1 = require("pixijs");
+const entities_1 = require("../core/entities");
+const helpers_1 = require("./helpers");
+const loader_1 = require("../loader");
+class ViewBuilder {
     get root() {
         return this._root;
     }
@@ -51,7 +56,11 @@ export class ViewBuilder {
     }
     withTexture(texture) {
         if (this.current.isSprite) {
-            this.current.texture = texture;
+            const sprite = this.current;
+            const textureToSprite = texture instanceof pixijs_1.Texture
+                ? texture
+                : loader_1.AssetsLoader.Textures.get(texture);
+            sprite.texture = textureToSprite;
         }
         return this;
     }
@@ -66,6 +75,7 @@ export class ViewBuilder {
     withNode(node) {
         this.current = this.exctractView(node);
         this.root.addChild(this.current);
+        console.log(this.current);
         return this;
     }
     withChildren() {
@@ -78,13 +88,13 @@ export class ViewBuilder {
         return this;
     }
     asEntity(collection) {
-        this.entity = new PixiEntity();
+        this.entity = new entities_1.PixiEntity();
         this.entity.add(this.current);
         collection.add(this.entity);
         return this;
     }
     withComponent(component) {
-        if (isComponentConstructor(component)) {
+        if ((0, helpers_1.isComponentConstructor)(component)) {
             const ctor = component;
             component = new ctor();
         }
@@ -96,12 +106,12 @@ export class ViewBuilder {
     }
     exctractView(view) {
         let obj;
-        if (isFunction(view)) {
+        if ((0, helpers_1.isFunction)(view)) {
             const ctor = view;
             obj = new ctor();
         }
         else {
-            if (isBuilder(view)) {
+            if ((0, helpers_1.isBuilder)(view)) {
                 obj = view.build();
             }
             else {
@@ -111,4 +121,5 @@ export class ViewBuilder {
         return obj;
     }
 }
+exports.ViewBuilder = ViewBuilder;
 //# sourceMappingURL=view.builder.js.map

@@ -3,6 +3,7 @@ import { Container, MaskData, Sprite, Texture } from 'pixijs';
 import { ViewConstructor, ViewUnion } from './data/types';
 import { PixiEntity } from '../core/entities';
 import { isFunction, isBuilder, isComponentConstructor } from './helpers';
+import { AssetsLoader } from '../loader';
 
 export class ViewBuilder<T extends Container> {
   private _root: T | null = null;
@@ -67,9 +68,16 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
-  public withTexture(texture: Texture): ViewBuilder<T> {
+  public withTexture(texture: Texture | string): ViewBuilder<T> {
     if (this.current.isSprite) {
-      (this.current as unknown as Sprite).texture = texture;
+      const sprite = this.current as unknown as Sprite;
+
+      const textureToSprite =
+        texture instanceof Texture
+          ? texture
+          : AssetsLoader.Textures.get(texture);
+
+      sprite.texture = textureToSprite;
     }
 
     return this;

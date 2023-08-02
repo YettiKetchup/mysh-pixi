@@ -1,6 +1,12 @@
-import { Texture } from 'pixijs';
+import { AssetInitOptions, Texture, Spritesheet } from 'pixijs';
+import { Bundle } from './bundle';
 export declare class AssetsLoader {
-    private static _bundles;
+    private static _textures;
+    private static _spritesheets;
+    static get Textures(): Bundle<Texture>;
+    static get Spritesheets(): Bundle<Spritesheet>;
+    static init(options: AssetInitOptions): Promise<void>;
     static loadBundle(name: string): Promise<void>;
-    static getTexture(bundle: string, name: string): Texture;
+    private static addTexture;
+    private static addSpritesheet;
 }

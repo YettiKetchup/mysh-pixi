@@ -18,7 +18,7 @@ export declare class ViewBuilder<T extends Container> {
     withZIndex(index: number): ViewBuilder<T>;
     withPivot(x: number, y: number): ViewBuilder<T>;
     withAnchor(x: number, y: number): ViewBuilder<T>;
-    withTexture(texture: Texture): ViewBuilder<T>;
+    withTexture(texture: Texture | string): ViewBuilder<T>;
     inPosition(x: number, y: number): ViewBuilder<T>;
     withAngle(value: number): ViewBuilder<T>;
     withNode<K extends Container>(node: ViewUnion<K>): ViewBuilder<T>;
