@@ -1,0 +1,1 @@
+{"version":3,"file":"is-componentConstructor.js","sourceRoot":"","sources":["../../../../src/builders/helpers/is-componentConstructor.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,MAAM,sBAAsB,GAAG,CACpC,KAAqC,EAC5B,EAAE;IACX,OAAO,KAAK,IAAI,EAAE,CAAC,QAAQ,CAAC,IAAI,CAAC,KAAK,CAAC,KAAK,mBAAmB,CAAC;AAClE,CAAC,CAAC"}

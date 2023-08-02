@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 18",
+
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "lib": ["es5", "es2015", "es2022", "dom", "esnext"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es2022",
+    "strict": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "outDir": "dist/esm",
+    "sourceMap": true,
+    "rootDir": "src"
+  },
+
+  "include": ["src/**/*"]
+}

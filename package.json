@@ -1,0 +1,31 @@
+{
+  "name": "mysh-pixi",
+  "version": "0.0.2",
+  "description": "Mysh and Pixijs integration",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rm -rf /dist && npm run build:esm && npm run build:cjs ",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs",
+    "start": "npm run start dist/esm/index.js"
+  },
+  "author": "Daniil Stolpnik",
+  "license": "ISC",
+  "dependencies": {
+    "@pixi/app": "^5.0.4",
+    "@pixi/core": "^5.0.4",
+    "@pixi/loaders": "^5.0.4",
+    "@pixi/sprite": "^5.0.4",
+    "@pixi/ticker": "^5.0.4",
+    "mysh": "^1.0.4",
+    "pixijs": "^7.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.0",
+    "typescript": "^5.1.6"
+  }
+}
