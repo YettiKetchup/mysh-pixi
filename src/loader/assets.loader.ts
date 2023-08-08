@@ -17,6 +17,24 @@ export class AssetsLoader {
     await Assets.init(options);
   }
 
+  public static loadFont(
+    name: string,
+    url: string,
+    weight: string = 'normal'
+  ): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      const font = new FontFace(name, `url(${url})`);
+      font.weight = weight;
+
+      await font.load();
+
+      document.fonts.add(font);
+      const el = document.createElement('DIV');
+      el.style.fontFamily = name;
+      resolve();
+    });
+  }
+
   public static async loadBundle(name: string): Promise<void> {
     try {
       const bundle = await Assets.loadBundle(name);
@@ -31,6 +49,7 @@ export class AssetsLoader {
         }
       }
     } catch (e) {
+      console.log(e);
       throw new Error(`Can't load ${name} bundle!`);
     }
   }

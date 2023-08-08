@@ -15,6 +15,17 @@ class AssetsLoader {
     static async init(options) {
         await pixijs_1.Assets.init(options);
     }
+    static loadFont(name, url, weight = 'normal') {
+        return new Promise(async (resolve, reject) => {
+            const font = new FontFace(name, `url(${url})`);
+            font.weight = weight;
+            await font.load();
+            document.fonts.add(font);
+            const el = document.createElement('DIV');
+            el.style.fontFamily = name;
+            resolve();
+        });
+    }
     static async loadBundle(name) {
         try {
             const bundle = await pixijs_1.Assets.loadBundle(name);
@@ -28,6 +39,7 @@ class AssetsLoader {
             }
         }
         catch (e) {
+            console.log(e);
             throw new Error(`Can't load ${name} bundle!`);
         }
     }

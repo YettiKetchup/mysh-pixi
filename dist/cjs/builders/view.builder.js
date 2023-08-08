@@ -39,12 +39,24 @@ class ViewBuilder {
         this.current.mask = mask;
         return this;
     }
+    isInteractive(value) {
+        this.current.interactive = value;
+        return this;
+    }
     withZIndex(index) {
         this.current.zIndex = index;
         return this;
     }
     withPivot(x, y) {
         this.current.pivot.set(x, y);
+        return this;
+    }
+    withRelativePivot(x, y) {
+        const { width, height } = this.current.getBounds();
+        const pivotX = x * width;
+        const pivotY = y * height;
+        console.log(width, height, pivotX, pivotY);
+        this.current.pivot.set(pivotX, pivotY);
         return this;
     }
     withAnchor(x, y) {
@@ -64,8 +76,42 @@ class ViewBuilder {
         }
         return this;
     }
-    inPosition(x, y) {
+    withAlpha(value) {
+        this.current.alpha = value;
+        return this;
+    }
+    withTint(color) {
+        if (this.current.isSprite) {
+            this.current.tint = color;
+        }
+        return this;
+    }
+    withPosition(x, y) {
         this.current.position.set(x, y);
+        return this;
+    }
+    withPositionX(x) {
+        this.current.position.x = x;
+        return this;
+    }
+    withPositionY(y) {
+        this.current.position.y = y;
+        return this;
+    }
+    withScale(x, y) {
+        this.current.scale.set(x, y);
+        return this;
+    }
+    withSkew(x, y) {
+        this.current.skew.set(x, y);
+        return this;
+    }
+    withWidth(width) {
+        this.current.width = width;
+        return this;
+    }
+    withHeight(height) {
+        this.current.height = height;
         return this;
     }
     withAngle(value) {
@@ -75,7 +121,6 @@ class ViewBuilder {
     withNode(node) {
         this.current = this.exctractView(node);
         this.root.addChild(this.current);
-        console.log(this.current);
         return this;
     }
     withChildren() {
@@ -87,18 +132,36 @@ class ViewBuilder {
         this.current = this.root;
         return this;
     }
+    withFactory(callback, data) {
+        callback(this, data);
+        return this;
+    }
+    rootAsCurrent() {
+        this.current = this.root;
+        return this;
+    }
     asEntity(collection) {
         this.entity = new entities_1.PixiEntity();
         this.entity.add(this.current);
         collection.add(this.entity);
         return this;
     }
-    withComponent(component) {
+    withComponent(component, isObservable = false) {
         if ((0, helpers_1.isComponentConstructor)(component)) {
             const ctor = component;
             component = new ctor();
         }
-        this.entity.add(component);
+        if (isObservable) {
+            const entity$ = this.entity.observable();
+            entity$.add(component);
+        }
+        else {
+            this.entity.add(component);
+        }
+        return this;
+    }
+    withComponents(component, isObservable = false) {
+        component.forEach((component) => this.withComponent(component, isObservable));
         return this;
     }
     build() {

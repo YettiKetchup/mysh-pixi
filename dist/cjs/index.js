@@ -18,4 +18,5 @@ __exportStar(require("./builders"), exports);
 __exportStar(require("./core/entities"), exports);
 __exportStar(require("./stage"), exports);
 __exportStar(require("./loader"), exports);
+__exportStar(require("mysh"), exports);
 //# sourceMappingURL=index.js.map

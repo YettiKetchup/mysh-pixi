@@ -2,11 +2,11 @@ export class Bundle<T> {
   private _list: Map<string, T> = new Map();
 
   public add(name: string, asset: T): void {
-    if (this._list.has(name)) {
-      throw new Error(
-        `The ${name} asset is already loaded. The new asset will not be added.`
-      );
-    }
+    // if (this._list.has(name)) {
+    //   throw new Error(
+    //     `The ${name} asset is already loaded. The new asset will not be added.`
+    //   );
+    // }
 
     this._list.set(name, asset);
   }

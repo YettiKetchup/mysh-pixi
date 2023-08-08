@@ -6,9 +6,11 @@ class Bundle {
         this._list = new Map();
     }
     add(name, asset) {
-        if (this._list.has(name)) {
-            throw new Error(`The ${name} asset is already loaded. The new asset will not be added.`);
-        }
+        // if (this._list.has(name)) {
+        //   throw new Error(
+        //     `The ${name} asset is already loaded. The new asset will not be added.`
+        //   );
+        // }
         this._list.set(name, asset);
     }
     get(name) {

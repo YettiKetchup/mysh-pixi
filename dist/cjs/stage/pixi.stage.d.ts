@@ -4,6 +4,6 @@ export declare abstract class PixiStage extends Stage {
     protected app: Application;
     constructor(app: Application);
     abstract preload(): Promise<void>;
-    init(): void;
+    preInit(): void;
     destroy(): void;
 }
