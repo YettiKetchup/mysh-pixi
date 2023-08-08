@@ -1,8 +1,14 @@
-import { Component, ComponentType, EntitiesCollection } from 'mysh';
+import {
+  Component,
+  ComponentType,
+  EntitiesCollection,
+  EntitySubject,
+} from 'mysh';
 import { Container, MaskData, Sprite, Texture } from 'pixijs';
 import { ViewConstructor, ViewUnion } from './data/types';
 import { PixiEntity } from '../core/entities';
 import { isFunction, isBuilder, isComponentConstructor } from './helpers';
+import { AssetsLoader } from '../loader';
 
 export class ViewBuilder<T extends Container> {
   private _root: T | null = null;
@@ -48,6 +54,11 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
+  public isInteractive(value: boolean): ViewBuilder<T> {
+    this.current.interactive = value;
+    return this;
+  }
+
   public withZIndex(index: number): ViewBuilder<T> {
     this.current.zIndex = index;
     return this;
@@ -55,6 +66,18 @@ export class ViewBuilder<T extends Container> {
 
   public withPivot(x: number, y: number): ViewBuilder<T> {
     this.current.pivot.set(x, y);
+    return this;
+  }
+
+  public withRelativePivot(x: number, y: number): ViewBuilder<T> {
+    const { width, height } = this.current.getBounds();
+
+    const pivotX = x * width;
+    const pivotY = y * height;
+
+    console.log(width, height, pivotX, pivotY);
+
+    this.current.pivot.set(pivotX, pivotY);
     return this;
   }
 
@@ -67,16 +90,65 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
-  public withTexture(texture: Texture): ViewBuilder<T> {
+  public withTexture(texture: Texture | string): ViewBuilder<T> {
     if (this.current.isSprite) {
-      (this.current as unknown as Sprite).texture = texture;
+      const sprite = this.current as unknown as Sprite;
+
+      const textureToSprite =
+        texture instanceof Texture
+          ? texture
+          : AssetsLoader.Textures.get(texture);
+
+      sprite.texture = textureToSprite;
     }
 
     return this;
   }
 
-  public inPosition(x: number, y: number): ViewBuilder<T> {
+  public withAlpha(value: number): ViewBuilder<T> {
+    this.current.alpha = value;
+    return this;
+  }
+
+  public withTint(color: number): ViewBuilder<T> {
+    if (this.current.isSprite) {
+      (this.current as unknown as Sprite).tint = color;
+    }
+    return this;
+  }
+
+  public withPosition(x: number, y: number): ViewBuilder<T> {
     this.current.position.set(x, y);
+    return this;
+  }
+
+  public withPositionX(x: number): ViewBuilder<T> {
+    this.current.position.x = x;
+    return this;
+  }
+
+  public withPositionY(y: number): ViewBuilder<T> {
+    this.current.position.y = y;
+    return this;
+  }
+
+  public withScale(x: number, y: number): ViewBuilder<T> {
+    this.current.scale.set(x, y);
+    return this;
+  }
+
+  public withSkew(x: number, y: number): ViewBuilder<T> {
+    this.current.skew.set(x, y);
+    return this;
+  }
+
+  public withWidth(width: number): ViewBuilder<T> {
+    this.current.width = width;
+    return this;
+  }
+
+  public withHeight(height: number): ViewBuilder<T> {
+    this.current.height = height;
     return this;
   }
 
@@ -103,23 +175,53 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
+  withFactory(
+    callback: (builder: ViewBuilder<T>, data: any) => void,
+    data: any
+  ): ViewBuilder<T> {
+    callback(this, data);
+    return this;
+  }
+
+  public rootAsCurrent(): ViewBuilder<T> {
+    this.current = this.root;
+    return this;
+  }
+
   public asEntity(collection: EntitiesCollection): ViewBuilder<T> {
     this.entity = new PixiEntity();
     this.entity.add(this.current);
     collection.add(this.entity);
+
     return this;
   }
 
   public withComponent(
-    component: Component | ComponentType<any>
+    component: Component | ComponentType<any>,
+    isObservable: boolean = false
   ): ViewBuilder<T> {
     if (isComponentConstructor(component)) {
       const ctor = component as ComponentType<any>;
       component = new ctor();
     }
 
-    this.entity.add(component as Component);
+    if (isObservable) {
+      const entity$ = this.entity.observable();
+      entity$.add(component as Component);
+    } else {
+      this.entity.add(component as Component);
+    }
 
+    return this;
+  }
+
+  public withComponents(
+    component: Component[] | ComponentType<any>[],
+    isObservable: boolean = false
+  ): ViewBuilder<T> {
+    component.forEach((component) =>
+      this.withComponent(component, isObservable)
+    );
     return this;
   }
 

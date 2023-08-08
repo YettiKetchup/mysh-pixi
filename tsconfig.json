@@ -7,7 +7,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": ["es5", "es2015", "es2022", "dom", "esnext"],
-    "module": "es2015",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "target": "es2022",
     "strict": true,

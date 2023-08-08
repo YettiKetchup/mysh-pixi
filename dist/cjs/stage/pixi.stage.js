@@ -15,12 +15,12 @@ let PixiStage = exports.PixiStage = class PixiStage extends mysh_1.Stage {
         super();
         this.app = app;
     }
-    init() {
-        super.init();
+    preInit() {
         const { root } = this;
         this.app.stage = root();
         this.app.stage.x = this.app.view.width / 2;
         this.app.stage.y = this.app.view.height / 2;
+        super.preInit();
     }
     destroy() {
         super.destroy();

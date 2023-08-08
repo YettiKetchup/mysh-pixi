@@ -1,4 +1,4 @@
-import { Stage } from 'mysh';
+import { EntityStorage, Stage } from 'mysh';
 import { Application, Container } from 'pixijs';
 import { Root } from './decorators/stage.decorators';
 import { RootFactory } from './data/types';
@@ -11,9 +11,7 @@ export abstract class PixiStage extends Stage {
 
   public abstract preload(): Promise<void>;
 
-  public init(): void {
-    super.init();
-
+  public preInit(): void {
     const { root } = this as unknown as Stage & {
       root: RootFactory;
     };
@@ -21,6 +19,8 @@ export abstract class PixiStage extends Stage {
     this.app.stage = root();
     this.app.stage.x = this.app.view.width / 2;
     this.app.stage.y = this.app.view.height / 2;
+
+    super.preInit();
   }
 
   public destroy(): void {

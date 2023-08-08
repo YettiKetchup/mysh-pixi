@@ -1,5 +1,8 @@
-import { Entity } from 'mysh';
-export class PixiEntity extends Entity {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.PixiEntity = void 0;
+const mysh_1 = require("mysh");
+class PixiEntity extends mysh_1.Entity {
     get visible() {
         try {
             return this.components[0].visible;
@@ -29,4 +32,5 @@ export class PixiEntity extends Entity {
         return new Error('The entity has not been added to the Node. Create an Entity via ViewBuilder.');
     }
 }
+exports.PixiEntity = PixiEntity;
 //# sourceMappingURL=pixi.entity.js.map
