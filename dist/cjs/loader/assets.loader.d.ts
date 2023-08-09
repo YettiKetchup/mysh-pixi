@@ -1,4 +1,6 @@
-import { AssetInitOptions, Texture, Spritesheet } from 'pixijs';
+import { Texture } from '@pixi/core';
+import { Spritesheet } from '@pixi/spritesheet';
+import { AssetInitOptions } from '@pixi/assets';
 import { Bundle } from './bundle';
 export declare class AssetsLoader {
     private static _textures;

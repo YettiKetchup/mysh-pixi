@@ -14,6 +14,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require("@pixi/events");
 __exportStar(require("./builders"), exports);
 __exportStar(require("./core/entities"), exports);
 __exportStar(require("./stage"), exports);

@@ -16,13 +16,16 @@
   "author": "Daniil Stolpnik",
   "license": "ISC",
   "dependencies": {
-    "@pixi/app": "^5.0.4",
-    "@pixi/core": "^5.0.4",
-    "@pixi/loaders": "^5.0.4",
-    "@pixi/sprite": "^5.0.4",
-    "@pixi/ticker": "^5.0.4",
-    "mysh": "^1.1.5",
-    "pixijs": "^7.1.4"
+    "@pixi/app": "^7.2.4",
+    "@pixi/assets": "^7.2.4",
+    "@pixi/core": "^7.2.4",
+    "@pixi/display": "^7.2.4",
+    "@pixi/events": "^7.2.4",
+    "@pixi/particle-emitter": "^5.0.8",
+    "@pixi/sprite": "^7.2.4",
+    "@pixi/spritesheet": "^7.2.4",
+    "@pixi/ticker": "^7.2.4",
+    "mysh": "^1.1.5"
   },
   "devDependencies": {
     "@types/node": "^20.4.0",

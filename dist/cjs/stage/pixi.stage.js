@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PixiStage = void 0;
 const mysh_1 = require("mysh");
-const pixijs_1 = require("pixijs");
+const display_1 = require("@pixi/display");
 const stage_decorators_1 = require("./decorators/stage.decorators");
 let PixiStage = exports.PixiStage = class PixiStage extends mysh_1.Stage {
     constructor(app) {
@@ -25,10 +25,10 @@ let PixiStage = exports.PixiStage = class PixiStage extends mysh_1.Stage {
     destroy() {
         super.destroy();
         this.app.stage.destroy();
-        this.app.stage = new pixijs_1.Container();
+        this.app.stage = new display_1.Container();
     }
 };
 exports.PixiStage = PixiStage = __decorate([
-    (0, stage_decorators_1.Root)(() => new pixijs_1.Container())
+    (0, stage_decorators_1.Root)(() => new display_1.Container())
 ], PixiStage);
 //# sourceMappingURL=pixi.stage.js.map

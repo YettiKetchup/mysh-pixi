@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AssetsLoader = void 0;
-const pixijs_1 = require("pixijs");
+const core_1 = require("@pixi/core");
+const spritesheet_1 = require("@pixi/spritesheet");
+const assets_1 = require("@pixi/assets");
 const bundle_1 = require("./bundle");
 class AssetsLoader {
     static { this._textures = new bundle_1.Bundle(); }
@@ -13,7 +15,7 @@ class AssetsLoader {
         return this._spritesheets;
     }
     static async init(options) {
-        await pixijs_1.Assets.init(options);
+        await assets_1.Assets.init(options);
     }
     static loadFont(name, url, weight = 'normal') {
         return new Promise(async (resolve, reject) => {
@@ -28,12 +30,12 @@ class AssetsLoader {
     }
     static async loadBundle(name) {
         try {
-            const bundle = await pixijs_1.Assets.loadBundle(name);
+            const bundle = await assets_1.Assets.loadBundle(name);
             for (let key in bundle) {
-                if (bundle[key] instanceof pixijs_1.Texture) {
+                if (bundle[key] instanceof core_1.Texture) {
                     this.addTexture(key, bundle[key]);
                 }
-                if (bundle[key] instanceof pixijs_1.Spritesheet) {
+                if (bundle[key] instanceof spritesheet_1.Spritesheet) {
                     this.addSpritesheet(key, bundle[key]);
                 }
             }

@@ -1,4 +1,4 @@
-import { Container } from 'pixijs';
+import { Container } from '@pixi/display';
 import { ViewBuilder } from '../view.builder';
 
 export type ViewConstructor<T extends Container> = new (...args: any[]) => T;

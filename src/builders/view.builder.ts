@@ -1,10 +1,7 @@
-import {
-  Component,
-  ComponentType,
-  EntitiesCollection,
-  EntitySubject,
-} from 'mysh';
-import { Container, MaskData, Sprite, Texture } from 'pixijs';
+import { Container } from '@pixi/display';
+import { MaskData, Texture } from '@pixi/core';
+import { Sprite } from '@pixi/sprite';
+import { Component, ComponentType, EntitiesCollection } from 'mysh';
 import { ViewConstructor, ViewUnion } from './data/types';
 import { PixiEntity } from '../core/entities';
 import { isFunction, isBuilder, isComponentConstructor } from './helpers';
