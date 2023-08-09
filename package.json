@@ -1,6 +1,6 @@
 {
   "name": "mysh-pixi",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Mysh and Pixijs integration",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
