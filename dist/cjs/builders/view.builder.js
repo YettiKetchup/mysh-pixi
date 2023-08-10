@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ViewBuilder = void 0;
-const pixijs_1 = require("pixijs");
+const core_1 = require("@pixi/core");
 const entities_1 = require("../core/entities");
 const helpers_1 = require("./helpers");
 const loader_1 = require("../loader");
@@ -69,7 +69,7 @@ class ViewBuilder {
     withTexture(texture) {
         if (this.current.isSprite) {
             const sprite = this.current;
-            const textureToSprite = texture instanceof pixijs_1.Texture
+            const textureToSprite = texture instanceof core_1.Texture
                 ? texture
                 : loader_1.AssetsLoader.Textures.get(texture);
             sprite.texture = textureToSprite;

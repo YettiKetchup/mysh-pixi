@@ -1,5 +1,5 @@
 import { Entity } from 'mysh';
-import { Container } from 'pixijs';
+import { Container } from '@pixi/display';
 
 export class PixiEntity extends Entity {
   public get visible(): boolean {

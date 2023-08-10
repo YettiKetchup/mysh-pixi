@@ -1,5 +1,6 @@
-import { EntityStorage, Stage } from 'mysh';
-import { Application, Container } from 'pixijs';
+import { Stage } from 'mysh';
+import { Application } from '@pixi/app';
+import { Container } from '@pixi/display';
 import { Root } from './decorators/stage.decorators';
 import { RootFactory } from './data/types';
 

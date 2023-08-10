@@ -1,5 +1,6 @@
+import { Container } from '@pixi/display';
+import { MaskData, Texture } from '@pixi/core';
 import { Component, ComponentType, EntitiesCollection } from 'mysh';
-import { Container, MaskData, Texture } from 'pixijs';
 import { ViewUnion } from './data/types';
 import { PixiEntity } from '../core/entities';
 export declare class ViewBuilder<T extends Container> {
