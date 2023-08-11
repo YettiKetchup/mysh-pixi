@@ -21,11 +21,12 @@
     "@pixi/core": "^7.2.4",
     "@pixi/display": "^7.2.4",
     "@pixi/events": "^7.2.4",
+    "@pixi/mixin-get-child-by-name": "^7.2.4",
     "@pixi/particle-emitter": "^5.0.8",
     "@pixi/sprite": "^7.2.4",
     "@pixi/spritesheet": "^7.2.4",
     "@pixi/ticker": "^7.2.4",
-    "mysh": "^1.1.5"
+    "mysh": "^1.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.4.0",
