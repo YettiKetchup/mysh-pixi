@@ -24,12 +24,13 @@ class ViewBuilder {
     set entity(value) {
         this._entity = value;
     }
-    constructor(root) {
+    constructor(root, name = '') {
         this._root = null;
         this._current = null;
         this._entity = null;
         this._root = this.exctractView(root);
         this._current = this._root;
+        this._current.name = name;
     }
     isVisible(visible) {
         this.current.visible = visible;
@@ -45,6 +46,10 @@ class ViewBuilder {
     }
     withZIndex(index) {
         this.current.zIndex = index;
+        return this;
+    }
+    withName(value) {
+        this.current.name = value;
         return this;
     }
     withPivot(x, y) {
@@ -118,8 +123,9 @@ class ViewBuilder {
         this.current.angle = value;
         return this;
     }
-    withNode(node) {
+    withNode(node, name = '') {
         this.current = this.exctractView(node);
+        this.current.name = name;
         this.root.addChild(this.current);
         return this;
     }

@@ -15,6 +15,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require("@pixi/events");
+require("@pixi/mixin-get-child-by-name");
 __exportStar(require("./builders"), exports);
 __exportStar(require("./core/entities"), exports);
 __exportStar(require("./stage"), exports);
