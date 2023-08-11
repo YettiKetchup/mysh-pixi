@@ -20,8 +20,6 @@ export abstract class PixiStage extends Stage {
     this.app.stage = root();
     this.app.stage.x = this.app.view.width / 2;
     this.app.stage.y = this.app.view.height / 2;
-
-    super.preInit();
   }
 
   public destroy(): void {

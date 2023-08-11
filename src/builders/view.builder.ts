@@ -36,9 +36,10 @@ export class ViewBuilder<T extends Container> {
     this._entity = value;
   }
 
-  constructor(root: ViewUnion<T>) {
+  constructor(root: ViewUnion<T>, name: string = '') {
     this._root = this.exctractView(root);
     this._current = this._root;
+    this._current.name = name;
   }
 
   public isVisible(visible: boolean): ViewBuilder<T> {
@@ -58,6 +59,11 @@ export class ViewBuilder<T extends Container> {
 
   public withZIndex(index: number): ViewBuilder<T> {
     this.current.zIndex = index;
+    return this;
+  }
+
+  public withName(value: string): ViewBuilder<T> {
+    this.current.name = value;
     return this;
   }
 
@@ -154,8 +160,12 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
-  public withNode<K extends Container>(node: ViewUnion<K>): ViewBuilder<T> {
+  public withNode<K extends Container>(
+    node: ViewUnion<K>,
+    name: string = ''
+  ): ViewBuilder<T> {
     this.current = this.exctractView(node);
+    this.current.name = name;
     this.root.addChild(this.current);
 
     return this;
