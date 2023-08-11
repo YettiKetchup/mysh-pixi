@@ -13,11 +13,12 @@ export declare class ViewBuilder<T extends Container> {
     protected set current(value: T);
     protected get entity(): PixiEntity;
     protected set entity(value: PixiEntity);
-    constructor(root: ViewUnion<T>);
+    constructor(root: ViewUnion<T>, name?: string);
     isVisible(visible: boolean): ViewBuilder<T>;
     isMask(mask: Container | MaskData): ViewBuilder<T>;
     isInteractive(value: boolean): ViewBuilder<T>;
     withZIndex(index: number): ViewBuilder<T>;
+    withName(value: string): ViewBuilder<T>;
     withPivot(x: number, y: number): ViewBuilder<T>;
     withRelativePivot(x: number, y: number): ViewBuilder<T>;
     withAnchor(x: number, y: number): ViewBuilder<T>;
@@ -32,7 +33,7 @@ export declare class ViewBuilder<T extends Container> {
     withWidth(width: number): ViewBuilder<T>;
     withHeight(height: number): ViewBuilder<T>;
     withAngle(value: number): ViewBuilder<T>;
-    withNode<K extends Container>(node: ViewUnion<K>): ViewBuilder<T>;
+    withNode<K extends Container>(node: ViewUnion<K>, name?: string): ViewBuilder<T>;
     withChildren(): ViewBuilder<T>;
     endChildren(): ViewBuilder<T>;
     withFactory(callback: (builder: ViewBuilder<T>, data: any) => void, data: any): ViewBuilder<T>;
