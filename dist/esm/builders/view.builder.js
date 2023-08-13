@@ -146,8 +146,8 @@ class ViewBuilder {
         this.current = this.root;
         return this;
     }
-    asEntity(collection) {
-        this.entity = new entities_1.PixiEntity();
+    asEntity(collection, entity) {
+        this.entity = entity || new entities_1.PixiEntity();
         this.entity.add(this.current);
         collection.add(this.entity);
         return this;
