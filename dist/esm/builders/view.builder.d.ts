@@ -38,7 +38,7 @@ export declare class ViewBuilder<T extends Container> {
     endChildren(): ViewBuilder<T>;
     withFactory(callback: (builder: ViewBuilder<T>, data: any) => void, data: any): ViewBuilder<T>;
     rootAsCurrent(): ViewBuilder<T>;
-    asEntity(collection: EntitiesCollection): ViewBuilder<T>;
+    asEntity(collection: EntitiesCollection, entity?: PixiEntity): ViewBuilder<T>;
     withComponent(component: Component | ComponentType<any>, isObservable?: boolean): ViewBuilder<T>;
     withComponents(component: Component[] | ComponentType<any>[], isObservable?: boolean): ViewBuilder<T>;
     build(): T;

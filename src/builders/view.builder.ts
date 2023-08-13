@@ -195,8 +195,11 @@ export class ViewBuilder<T extends Container> {
     return this;
   }
 
-  public asEntity(collection: EntitiesCollection): ViewBuilder<T> {
-    this.entity = new PixiEntity();
+  public asEntity(
+    collection: EntitiesCollection,
+    entity?: PixiEntity
+  ): ViewBuilder<T> {
+    this.entity = entity || new PixiEntity();
     this.entity.add(this.current);
     collection.add(this.entity);
 
