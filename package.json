@@ -26,7 +26,7 @@
     "@pixi/sprite": "^7.2.4",
     "@pixi/spritesheet": "^7.2.4",
     "@pixi/ticker": "^7.2.4",
-    "mysh": "^1.2.2"
+    "mysh": "^1.2.3"
   },
   "devDependencies": {
     "@types/node": "^20.4.0",
